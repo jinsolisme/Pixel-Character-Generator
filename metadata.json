@@ -1,0 +1,5 @@
+{
+  "name": "Pixel Character Generator",
+  "description": "Generate and customize unique 8-bit pixel art characters with random shapes and colors. Export your creations as SVG or PNG.",
+  "requestFramePermissions": []
+}
