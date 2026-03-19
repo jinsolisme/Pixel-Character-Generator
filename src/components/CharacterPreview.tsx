@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import type { MotionName } from '@/src/motion-config';
 
 const GRID_SIZE = 16;
@@ -12,14 +12,13 @@ type CharacterPreviewProps = {
   bubblePixels32: FinePixelCell[];
   currentFrameDy: number;
   firePixels32: FinePixelCell[];
-  generateCount: number;
   glassesPixels32: FinePixelCell[];
   hatPixels: PixelCell[];
   hatStarFill: string | null;
   hatStarPoints: string | null;
   errorFlagPixels32: FinePixelCell[];
   laptopPixels32: FinePixelCell[];
-  renderedPixelColorMap: Map<string, string>;
+  renderedPixels: PixelCell[];
   showBubble: boolean;
   showFire: boolean;
   showGlasses: boolean;
@@ -32,14 +31,13 @@ export function CharacterPreview({
   bubblePixels32,
   currentFrameDy,
   firePixels32,
-  generateCount,
   glassesPixels32,
   hatPixels,
   hatStarFill,
   hatStarPoints,
   errorFlagPixels32,
   laptopPixels32,
-  renderedPixelColorMap,
+  renderedPixels,
   showBubble,
   showFire,
   showGlasses,
@@ -82,33 +80,16 @@ export function CharacterPreview({
             </g>
           </svg>
         )}
-        <div
-          className="grid gap-0"
-          style={{
-            gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-            width: '100%',
-            height: '100%',
-          }}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          shapeRendering="crispEdges"
         >
-          <AnimatePresence mode="popLayout">
-            {Array.from({ length: GRID_SIZE * GRID_SIZE }, (_, index) => {
-              const x = index % GRID_SIZE;
-              const y = Math.floor(index / GRID_SIZE);
-              const fill = renderedPixelColorMap.get(`${x},${y}`) ?? 'transparent';
-              return (
-                <motion.div
-                  key={`${x}-${y}-${generateCount}-${activeMotion}-${showHat}-${showGlasses}-${showBubble}-${showFire}`}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0 }}
-                  className="w-full h-full"
-                  style={{ backgroundColor: fill }}
-                />
-              );
-            })}
-          </AnimatePresence>
-        </div>
+          {renderedPixels.map(({ x, y, fill }) => (
+            <rect key={`body-${x}-${y}`} x={x} y={y} width="1" height="1" fill={fill} />
+          ))}
+        </svg>
         {showHat && (hatPixels.length > 0 || hatStarPoints) && (
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none"

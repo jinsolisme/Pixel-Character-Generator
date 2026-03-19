@@ -1,0 +1,4 @@
+interface:
+  display_name: "픽셀 모션 튜닝"
+  short_description: "Copy Params·에셋 생성·preview 조정"
+  default_prompt: "Use $pixel-character-motion-tuning to Pixel Character Generator의 모션 수정, 새 픽셀 에셋 생성, preview clipping/headroom 조정을 같이 해줘."

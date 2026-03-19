@@ -115,7 +115,6 @@ export default function App() {
   const [grid, setGrid] = useState<boolean[][]>([]);
   const [color, setColor] = useState('#F97316');
   const [bgColor, setBgColor] = useState('transparent');
-  const [generateCount, setGenerateCount] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [activeMotion, setActiveMotion] = useState<AnimationType>('idle');
   const [animFrame, setAnimFrame] = useState(0);
@@ -277,7 +276,6 @@ export default function App() {
     setHeadInfo({ topY: headStartY, minX: headMinX, maxX: headMaxX });
 
     setGrid(newGrid);
-    setGenerateCount(c => c + 1);
     setAnimFrame(0);
 
     const hue = Math.floor(Math.random() * 360);
@@ -606,14 +604,6 @@ export default function App() {
     return Array.from(map.values());
   }, [displayGrid, accessoryPixels, color]);
 
-  const renderedPixelColorMap = useMemo(() => {
-    const map = new Map<string, string>();
-    renderedPixels.forEach(pixel => {
-      map.set(`${pixel.x},${pixel.y}`, pixel.fill);
-    });
-    return map;
-  }, [renderedPixels]);
-
   useEffect(() => {
     if (!animFrames) { setAnimFrame(0); return; }
     const fps = activeMotion ? MOTION_FPS[activeMotion] : 6;
@@ -802,14 +792,13 @@ export default function App() {
               bubblePixels32={bubblePixels32}
               currentFrameDy={currentFrameDy}
               firePixels32={firePixels32}
-              generateCount={generateCount}
               glassesPixels32={glassesPixels32}
               hatPixels={hatPixels}
               hatStarFill={hatStar?.fill ?? null}
               hatStarPoints={hatStar ? pointsToSvg(hatStar.points) : null}
               errorFlagPixels32={errorFlagPixels32}
               laptopPixels32={laptopPixels32}
-              renderedPixelColorMap={renderedPixelColorMap}
+              renderedPixels={renderedPixels}
               showBubble={showBubble}
               showFire={showFire}
               showGlasses={showGlasses}
