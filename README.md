@@ -1,20 +1,63 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Pixel Character Generator
 
-# Run and deploy your AI Studio app
+16x16 symmetric pixel character generator built with React and Vite.
 
-This contains everything you need to run your app locally.
+This project runs as a normal local web app. AI Studio is not required for development or testing.
 
-View your app in AI Studio: https://ai.studio/apps/7d8408f4-9217-410f-aad1-b00b32242efb
+## Features
 
-## Run Locally
+- Procedural 16x16 character generation
+- Motion presets: idle, walk, hi, laptop, error, jump
+- Optional overlays: glasses, hat, speech bubble, fire
+- Export options: SVG, WebP, PNG 16px, PNG 1024px
 
-**Prerequisites:**  Node.js
+## Stack
 
+- React 19
+- Vite
+- TypeScript
+- Tailwind CSS 4
+- Motion
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Local Development
+
+Prerequisites:
+
+- Node.js 18+
+- npm
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+The app runs on `http://localhost:3000`.
+
+## Available Scripts
+
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
+
+## Environment Variables
+
+No environment variables are required for the current local workflow.
+
+## Collaboration
+
+Clone the repository and work in feature branches when collaborating:
+
+```bash
+git clone https://github.com/jinsolisme/Pixel-Character-Generator.git
+cd Pixel-Character-Generator
+```
