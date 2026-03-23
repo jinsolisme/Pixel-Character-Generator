@@ -6,6 +6,8 @@ This project runs as a normal local web app. AI Studio is not required for devel
 
 ![Pixel Character Generator preview](docs/readme-preview.png)
 
+Live demo: https://pixel-character-generator-nine.vercel.app/
+
 ## Features
 
 - Procedural 16x16 character generation
